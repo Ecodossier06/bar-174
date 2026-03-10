@@ -263,8 +263,8 @@ footer strong{color:var(--g2);}
         <div class="ferr" id="e-code_apporteur"></div>
       </div>
       <div class="f" style="margin-top:14px;">
-        <label class="lbl">Prénom du déposant <span class="r">*</span></label>
-        <input type="text" id="prenom_deposant" placeholder="Prénom de la personne qui dépose le dossier" autocomplete="off">
+        <label class="lbl">Prénom du commercial <span class="r">*</span></label>
+        <input type="text" id="prenom_deposant" placeholder="Nom du commercial référent" autocomplete="off">
         <div class="ferr" id="e-prenom_deposant"></div>
       </div>
     </div>
@@ -391,7 +391,7 @@ function validate(){
   let ok=true;
   if(!chk('nom',    v=>v.length>=2,'Nom requis'))                            ok=false;
   if(!chk('prenom', v=>v.length>=2,'Prénom requis'))                         ok=false;
-  if(!chk('prenom_deposant', v=>v.length>=2,'Prénom du déposant requis'))     ok=false;
+  if(!chk('prenom_deposant', v=>v.length>=2,'Nom du commercial requis'))     ok=false;
   if(!statut){ err('statut','Choisissez un statut'); ok=false; }
   if(!chk('tel',    v=>/^[\d\s\+\-\.]{8,}$/.test(v),'Téléphone invalide'))  ok=false;
   if(!chk('email',  v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),'Email invalide')) ok=false;
