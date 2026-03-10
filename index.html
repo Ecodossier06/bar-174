@@ -4,19 +4,15 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Dépôt Bar 174 — Rénovation d'Ampleur CEE</title>
-
-<!-- SEO / WhatsApp / Facebook -->
-<meta name="description" content="Déposez votre dossier de rénovation énergétique d'ampleur BAR-TH-174. Isolation, audit énergétique, gain ≥ 2 classes DPE.">
+<meta name="description" content="Déposez votre dossier de rénovation énergétique d'ampleur BAR-TH-174.">
 <meta property="og:title" content="BAR-TH-174 · Dépôt de dossier CEE">
-<meta property="og:description" content="Rénovation d'ampleur — Isolation + Audit énergétique. Déposez votre dossier en ligne.">
+<meta property="og:description" content="Rénovation d'ampleur — Dépôt de dossier CEE.">
 <meta property="og:image" content="og-image.png">
 <meta property="og:image:width" content="1200">
 <meta property="og:image:height" content="630">
 <meta property="og:type" content="website">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/x-icon" href="favicon.ico">
-<link rel="icon" type="image/png" href="favicon.png">
-
 <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=Epilogue:wght@300;400;500;600&display=swap" rel="stylesheet">
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
@@ -62,63 +58,103 @@ h1 em{color:var(--gold-light);font-style:normal;}
 .f{display:flex;flex-direction:column;gap:5px;}
 label.lbl{font-size:12.5px;font-weight:600;color:var(--muted);letter-spacing:.3px;}
 label.lbl .r{color:var(--g3);}
-input,select{width:100%;padding:10px 13px;border:1.5px solid var(--border);border-radius:10px;font-family:'Epilogue',sans-serif;font-size:14.5px;color:var(--text);background:var(--white);transition:border-color .18s,box-shadow .18s;outline:none;-webkit-appearance:none;}
+input,select{width:100%;padding:11px 14px;border:1.5px solid var(--border);border-radius:10px;font-family:'Epilogue',sans-serif;font-size:15px;color:var(--text);background:var(--white);transition:border-color .18s,box-shadow .18s;outline:none;-webkit-appearance:none;}
 input:focus,select:focus{border-color:var(--g3);box-shadow:0 0 0 3px rgba(45,138,82,.12);}
 input.err,select.err{border-color:var(--error)!important;}
 select{cursor:pointer;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%235a6e62' stroke-width='2.5'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;padding-right:34px;}
 .ferr{font-size:11.5px;color:var(--error);min-height:16px;}
 
+/* RADIO STATUT */
 .radio-row{display:flex;gap:10px;flex-wrap:wrap;}
-.rl{flex:1;min-width:130px;display:flex;align-items:center;justify-content:center;gap:8px;padding:10px 14px;border:1.5px solid var(--border);border-radius:10px;cursor:pointer;font-size:13.5px;font-weight:500;color:var(--muted);transition:all .18s;user-select:none;}
-.rl:hover{border-color:var(--g3);color:var(--g2);}
-.rl.on{border-color:var(--g2);background:rgba(45,138,82,.07);color:var(--g2);font-weight:600;}
+.rl{
+  flex:1;min-width:140px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  padding:14px 16px;
+  border:2px solid var(--border);border-radius:12px;
+  cursor:pointer;font-size:14px;font-weight:500;color:var(--muted);
+  transition:all .2s;user-select:none;
+  background:var(--white);
+}
+.rl:hover{border-color:var(--g3);color:var(--g2);background:rgba(45,138,82,.03);}
+.rl.on{
+  border-color:var(--g2);
+  background:rgba(45,138,82,.1);
+  color:var(--g2);font-weight:700;
+  box-shadow:0 0 0 3px rgba(45,138,82,.15);
+}
 .rl input{display:none;}
-.rdot{width:15px;height:15px;border:2px solid currentColor;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
-.rl.on .rdot::after{content:'';width:7px;height:7px;background:var(--g2);border-radius:50%;}
+.rdot{
+  width:18px;height:18px;
+  border:2px solid currentColor;border-radius:50%;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;
+}
+.rl.on .rdot{background:var(--g2);border-color:var(--g2);}
+.rl.on .rdot::after{content:'';width:7px;height:7px;background:#fff;border-radius:50%;}
 
+/* GESTES */
 .gestes-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;}
 @media(max-width:400px){.gestes-grid{grid-template-columns:1fr}}
 .gc{position:relative;cursor:pointer;}
 .gc input{position:absolute;opacity:0;width:0;height:0;}
 .gi{display:flex;flex-direction:column;align-items:center;gap:7px;padding:16px 10px;border:2px solid var(--border);border-radius:var(--radius);text-align:center;transition:all .18s;background:var(--white);user-select:none;}
 .gc:hover .gi{border-color:var(--g3);background:rgba(45,138,82,.03);}
-.gc input:checked + .gi{border-color:var(--g2);background:rgba(45,138,82,.08);}
+.gc input:checked + .gi{border-color:var(--g2);background:rgba(45,138,82,.1);box-shadow:0 0 0 3px rgba(45,138,82,.12);}
 .gico{font-size:26px;}.gnm{font-family:'Syne',sans-serif;font-size:12.5px;font-weight:700;color:var(--g1);line-height:1.2;}.gdesc{font-size:11px;color:var(--muted);line-height:1.3;}
-.gchk{width:18px;height:18px;border:2px solid var(--border);border-radius:5px;display:flex;align-items:center;justify-content:center;transition:all .18s;margin-top:3px;}
+.gchk{width:20px;height:20px;border:2px solid var(--border);border-radius:6px;display:flex;align-items:center;justify-content:center;transition:all .18s;margin-top:3px;}
 .gc input:checked + .gi .gchk{background:var(--g2);border-color:var(--g2);}
-.gc input:checked + .gi .gchk::after{content:'✓';color:#fff;font-size:11px;font-weight:700;}
+.gc input:checked + .gi .gchk::after{content:'✓';color:#fff;font-size:12px;font-weight:700;}
 .gcounter{font-size:12px;color:var(--muted);margin-top:10px;font-style:italic;}
 .gcounter.ok{color:var(--g2);font-weight:600;font-style:normal;}
 
-.dropzone{border:2px dashed var(--border);border-radius:var(--radius);padding:26px 20px;text-align:center;cursor:pointer;transition:all .2s;background:#fafcf9;position:relative;}
+/* UPLOAD */
+.dropzone{border:2px dashed var(--border);border-radius:var(--radius);padding:28px 20px;text-align:center;cursor:pointer;transition:all .2s;background:#fafcf9;position:relative;}
 .dropzone:hover,.dropzone.over{border-color:var(--g3);background:rgba(45,138,82,.04);}
+.dropzone.has-files{border-color:var(--g2);border-style:solid;background:rgba(45,138,82,.04);}
 .dropzone input{position:absolute;inset:0;opacity:0;cursor:pointer;width:100%;height:100%;border:none;padding:0;}
-.dico{font-size:30px;margin-bottom:8px;}.dtxt{font-size:13.5px;font-weight:500;color:var(--muted);margin-bottom:3px;}.dhint{font-size:11.5px;color:#aab5ae;}
-.flist{margin-top:12px;display:flex;flex-direction:column;gap:7px;}
-.fitem{display:flex;align-items:center;justify-content:space-between;padding:8px 12px;background:rgba(45,138,82,.07);border-radius:8px;font-size:12.5px;color:var(--g1);}
-.frem{cursor:pointer;color:var(--error);font-size:15px;font-weight:700;background:none;border:none;padding:0 3px;line-height:1;}
+.dico{font-size:32px;margin-bottom:8px;transition:transform .2s;}
+.dropzone:hover .dico{transform:scale(1.1);}
+.dtxt{font-size:13.5px;font-weight:500;color:var(--muted);margin-bottom:3px;}
+.dhint{font-size:11.5px;color:#aab5ae;}
+.flist{margin-top:14px;display:flex;flex-direction:column;gap:8px;}
+.fitem{
+  display:flex;align-items:center;justify-content:space-between;
+  padding:10px 14px;
+  background:rgba(45,138,82,.08);
+  border:1px solid rgba(45,138,82,.2);
+  border-radius:10px;font-size:13px;color:var(--g1);
+  animation:fadeUp .2s ease both;
+}
+.fitem-info{display:flex;align-items:center;gap:8px;}
+.fitem-icon{font-size:18px;}
+.fitem-name{font-weight:500;}
+.fitem-size{font-size:11.5px;color:var(--muted);}
+.frem{cursor:pointer;color:var(--error);font-size:16px;font-weight:700;background:none;border:none;padding:2px 6px;line-height:1;border-radius:5px;transition:background .15s;}
+.frem:hover{background:rgba(184,50,50,.1);}
+
+.upload-count{
+  display:none;
+  margin-top:10px;padding:8px 14px;
+  background:rgba(45,138,82,.1);border:1px solid rgba(45,138,82,.2);
+  border-radius:8px;font-size:13px;color:var(--g2);font-weight:600;
+  text-align:center;
+}
+.upload-count.visible{display:block;}
+
 .progress-wrap{margin-top:14px;display:none;}
 .progress-label{font-size:12px;color:var(--muted);margin-bottom:6px;}
-.pbar-track{height:6px;background:var(--cream2);border-radius:10px;overflow:hidden;}
+.pbar-track{height:8px;background:var(--cream2);border-radius:10px;overflow:hidden;}
 .pbar-fill{height:100%;background:linear-gradient(90deg,var(--g2),var(--g3));border-radius:10px;transition:width .3s;width:0%;}
 
-.btn-submit{width:100%;padding:15px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border:none;border-radius:var(--radius);font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
+.btn-submit{width:100%;padding:16px;background:linear-gradient(135deg,var(--g1),var(--g2));color:#fff;border:none;border-radius:var(--radius);font-family:'Syne',sans-serif;font-size:16px;font-weight:700;cursor:pointer;transition:all .22s;position:relative;overflow:hidden;}
 .btn-submit::after{content:'';position:absolute;inset:0;background:linear-gradient(135deg,var(--g2),var(--g3));opacity:0;transition:opacity .22s;}
 .btn-submit:hover::after{opacity:1;}
 .btn-submit span{position:relative;z-index:1;}
 .btn-submit:disabled{opacity:.55;cursor:not-allowed;}
 
-.msg{display:none;margin-top:14px;padding:14px 18px;border-radius:12px;font-size:13.5px;font-weight:500;line-height:1.5;gap:10px;align-items:flex-start;}
+.msg{display:none;margin-top:14px;padding:16px 18px;border-radius:12px;font-size:14px;font-weight:500;line-height:1.5;gap:12px;align-items:flex-start;}
 .msg.ok{display:flex;background:rgba(45,138,82,.1);border:1px solid rgba(45,138,82,.3);color:#0a4020;}
 .msg.ko{display:flex;background:rgba(184,50,50,.08);border:1px solid rgba(184,50,50,.25);color:var(--error);}
-
-/* Apporteur preview */
-.apporteur-preview{
-  display:none;margin-top:8px;padding:8px 12px;
-  background:rgba(45,138,82,.08);border:1px solid rgba(45,138,82,.2);
-  border-radius:9px;font-size:13px;color:var(--g2);font-weight:600;
-}
-.apporteur-preview.visible{display:block;}
 
 footer{text-align:center;padding:28px 24px;border-top:1px solid var(--cream2);font-size:11.5px;color:#9aada2;}
 footer strong{color:var(--g2);}
@@ -131,7 +167,7 @@ footer strong{color:var(--g2);}
   <div class="hero-inner">
     <div class="tag"><span class="tag-dot"></span>BAR-TH-174 · CEE Rénovation d'Ampleur</div>
     <h1>Déposez votre dossier<br><em>rénovation globale</em></h1>
-    <p class="hero-sub">Rénovation énergétique d'ampleur d'une maison individuelle existante.</p>
+    <p class="hero-sub">Rénovation énergétique d'ampleur d'une maison individuelle existante. Audit énergétique + 2 gestes d'isolation — saut minimum de 2 classes DPE.</p>
     <div class="info-pills">
       <div class="pill">✅ Maison individuelle existante</div>
       <div class="pill">📋 Audit énergétique requis</div>
@@ -150,19 +186,26 @@ footer strong{color:var(--g2);}
     <div class="card">
       <div class="card-head"><div class="cicon">👤</div><div><div class="ctitle">Identité du bénéficiaire</div><div class="csub">Informations personnelles</div></div></div>
       <div class="g2">
-        <div class="f"><label class="lbl">Nom <span class="r">*</span></label><input type="text" id="nom" placeholder="Dupont"><div class="ferr" id="e-nom"></div></div>
-        <div class="f"><label class="lbl">Prénom <span class="r">*</span></label><input type="text" id="prenom" placeholder="Marie"><div class="ferr" id="e-prenom"></div></div>
+        <div class="f"><label class="lbl">Nom <span class="r">*</span></label><input type="text" id="nom" placeholder="Dupont" autocomplete="family-name"><div class="ferr" id="e-nom"></div></div>
+        <div class="f"><label class="lbl">Prénom <span class="r">*</span></label><input type="text" id="prenom" placeholder="Marie" autocomplete="given-name"><div class="ferr" id="e-prenom"></div></div>
+        <div class="f s2"><label class="lbl">Prénom du déposant <span class="r">*</span></label><input type="text" id="prenom_deposant" placeholder="Prénom de la personne qui dépose le dossier" autocomplete="off"><div class="ferr" id="e-prenom_deposant"></div></div>
         <div class="f s2">
           <label class="lbl">Statut <span class="r">*</span></label>
           <div class="radio-row">
-            <label class="rl" onclick="setStatut('grand_precaire',this)"><input type="radio" name="statut" value="grand_precaire"><span class="rdot"></span>Grand Précaire</label>
-            <label class="rl" onclick="setStatut('sci',this)"><input type="radio" name="statut" value="sci"><span class="rdot"></span>SCI</label>
+            <label class="rl" id="rl-gp">
+              <input type="radio" name="statut" value="grand_precaire">
+              <span class="rdot"></span>Grand Précaire
+            </label>
+            <label class="rl" id="rl-sci">
+              <input type="radio" name="statut" value="sci">
+              <span class="rdot"></span>SCI
+            </label>
           </div>
           <div class="ferr" id="e-statut"></div>
         </div>
-        <div class="f"><label class="lbl">Téléphone <span class="r">*</span></label><input type="tel" id="tel" placeholder="06 12 34 56 78"><div class="ferr" id="e-tel"></div></div>
-        <div class="f"><label class="lbl">Email <span class="r">*</span></label><input type="email" id="email" placeholder="marie@email.fr"><div class="ferr" id="e-email"></div></div>
-        <div class="f s2"><label class="lbl">Adresse du client <span class="r">*</span></label><input type="text" id="adresse" placeholder="15 rue des Lilas, 75001 Paris"><div class="ferr" id="e-adresse"></div></div>
+        <div class="f"><label class="lbl">Téléphone <span class="r">*</span></label><input type="tel" id="tel" placeholder="06 12 34 56 78" autocomplete="tel"><div class="ferr" id="e-tel"></div></div>
+        <div class="f"><label class="lbl">Email <span class="r">*</span></label><input type="email" id="email" placeholder="marie@email.fr" autocomplete="email"><div class="ferr" id="e-email"></div></div>
+        <div class="f s2"><label class="lbl">Adresse du client <span class="r">*</span></label><input type="text" id="adresse" placeholder="15 rue des Lilas, 75001 Paris" autocomplete="street-address"><div class="ferr" id="e-adresse"></div></div>
       </div>
     </div>
 
@@ -181,7 +224,7 @@ footer strong{color:var(--g2);}
           </select>
           <div class="ferr" id="e-type_logement"></div>
         </div>
-        <div class="f"><label class="lbl">Surface habitable (m²) <span class="r">*</span></label><input type="number" id="surface" placeholder="95" min="1"><div class="ferr" id="e-surface"></div></div>
+        <div class="f"><label class="lbl">Surface habitable (m²) <span class="r">*</span></label><input type="number" id="surface" placeholder="95" min="1" inputmode="numeric"><div class="ferr" id="e-surface"></div></div>
         <div class="f s2">
           <label class="lbl">Système de chauffage existant <span class="r">*</span></label>
           <select id="chauffage">
@@ -202,7 +245,7 @@ footer strong{color:var(--g2);}
     <div class="card">
       <div class="card-head"><div class="cicon">🌿</div><div><div class="ctitle">Gestes d'isolation</div><div class="csub">Sélectionnez exactement 2 gestes</div></div></div>
       <div class="gestes-grid">
-        <label class="gc"><input type="checkbox" value="comble"><div class="gi"><div class="gico">🏔️</div><div class="gnm">Toiture / Combles</div><div class="gdesc">Combles perdus ou aménagés</div><div class="gchk"></div></div></label>
+        <label class="gc"><input type="checkbox" value="comble"><div class="gi"><div class="gico">🏠</div><div class="gnm">Toiture / Combles</div><div class="gdesc">Combles perdus ou aménagés</div><div class="gchk"></div></div></label>
         <label class="gc"><input type="checkbox" value="plancher_bas"><div class="gi"><div class="gico">🔲</div><div class="gnm">Plancher Bas</div><div class="gdesc">Sol sur vide sanitaire ou cave</div><div class="gchk"></div></div></label>
         <label class="gc"><input type="checkbox" value="mur_interieur_25"><div class="gi"><div class="gico">🧱</div><div class="gnm">Mur Int. 25%</div><div class="gdesc">Murs intérieurs R≥3.7</div><div class="gchk"></div></div></label>
       </div>
@@ -212,13 +255,12 @@ footer strong{color:var(--g2);}
 
     <!-- APPORTEUR -->
     <div class="card">
-      <div class="card-head"><div class="cicon">🤝</div><div><div class="ctitle">Apporteur d'affaires</div><div class="csub">Code transmis par votre référent</div></div></div>
+      <div class="card-head"><div class="cicon">🤝</div><div><div class="ctitle">Code apporteur</div><div class="csub">Transmis par votre référent</div></div></div>
       <div class="f">
-        <label class="lbl">Code apporteur <span class="r">*</span></label>
-        <select id="code_apporteur" onchange="previewApporteur()">
-          <option value="">— Sélectionner un apporteur —</option>
+        <label class="lbl">Code <span class="r">*</span></label>
+        <select id="code_apporteur">
+          <option value="">— Sélectionner —</option>
         </select>
-        <div class="apporteur-preview" id="apporteur-preview"></div>
         <div class="ferr" id="e-code_apporteur"></div>
       </div>
     </div>
@@ -227,11 +269,12 @@ footer strong{color:var(--g2);}
     <div class="card">
       <div class="card-head"><div class="cicon">📎</div><div><div class="ctitle">Pièces justificatives</div><div class="csub">Pièce d'identité + avis d'imposition obligatoires</div></div></div>
       <div class="dropzone" id="dz">
-        <input type="file" id="fi" multiple accept=".pdf,.jpg,.jpeg,.png,.doc,.docx" onchange="addFiles(this.files)">
+        <input type="file" id="fi" multiple accept=".pdf,.jpg,.jpeg,.png" onchange="addFiles(this.files)">
         <div class="dico">📂</div>
-        <div class="dtxt">Glissez vos fichiers ici ou cliquez</div>
-        <div class="dhint">Pièce d'identité (CNI/passeport) + avis d'imposition — PDF, JPG, PNG — 10 Mo max</div>
+        <div class="dtxt">Appuyez ici pour ajouter vos fichiers</div>
+        <div class="dhint">Pièce d'identité + avis d'imposition · PDF, JPG, PNG · 10 Mo max</div>
       </div>
+      <div class="upload-count" id="upload-count"></div>
       <div class="flist" id="flist"></div>
       <div class="progress-wrap" id="pwrap">
         <div class="progress-label" id="plabel">Upload en cours…</div>
@@ -240,7 +283,7 @@ footer strong{color:var(--g2);}
     </div>
 
     <button type="submit" class="btn-submit" id="btn"><span id="btnTxt">Envoyer mon dossier →</span></button>
-    <div class="msg" id="msgOk">✅ <div><strong>Dossier envoyé !</strong> Notre équipe vous contactera sous 48h ouvrées.</div></div>
+    <div class="msg" id="msgOk">✅ <div><strong>Dossier envoyé !</strong><br>Notre équipe vous contactera sous 48h ouvrées.</div></div>
     <div class="msg" id="msgKo">⚠️ <div id="msgKoTxt">Une erreur est survenue. Veuillez réessayer.</div></div>
   </form>
 </div>
@@ -252,69 +295,84 @@ const SUPABASE_URL  = "https://upultfflbxrghptavwvf.supabase.co";
 const SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InVwdWx0ZmZsYnhyZ2hwdGF2d3ZmIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzMwNjU1MDYsImV4cCI6MjA4ODY0MTUwNn0.Uq2AnyqYJeCztqzDjUWNYk0LvhS3gGIXn3TlxQo17ug";
 const sb = supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
 
-let statut=null, files=[], apporteurs=[];
+let statut=null, files=[];
 
-// Charger les apporteurs
+// Charger codes apporteurs (codes seulement, sans noms)
 (async()=>{
-  const {data} = await sb.from('apporteurs').select('nom,code').eq('actif',true).order('nom');
-  apporteurs = data||[];
+  const {data} = await sb.from('codes_apporteurs').select('code').eq('actif',true).order('code');
   const sel = document.getElementById('code_apporteur');
-  apporteurs.forEach(a=>{
+  (data||[]).forEach(a=>{
     const o = document.createElement('option');
-    o.value = a.code;
-    o.textContent = a.code; // affiche seulement le code côté formulaire
+    o.value = a.code; o.textContent = a.code;
     sel.appendChild(o);
   });
 })();
 
-function previewApporteur(){
-  const code = document.getElementById('code_apporteur').value;
-  const prev = document.getElementById('apporteur-preview');
-  const a = apporteurs.find(x=>x.code===code);
- 
-  else { prev.classList.remove('visible'); }
-  err('code_apporteur','');
-}
+// Statut radio
+document.querySelectorAll('.rl').forEach(el => {
+  el.addEventListener('click', () => {
+    const val = el.querySelector('input').value;
+    statut = val;
+    document.querySelectorAll('.rl').forEach(l => l.classList.remove('on'));
+    el.classList.add('on');
+    err('statut','');
+  });
+});
 
-function setStatut(val,el){
-  statut=val;
-  document.querySelectorAll('.rl').forEach(l=>l.classList.remove('on'));
-  el.classList.add('on'); err('statut','');
-}
-
-document.querySelectorAll('.gc input').forEach(cb=>{
-  cb.addEventListener('change',()=>{
-    const checked=document.querySelectorAll('.gc input:checked');
-    if(checked.length>2){cb.checked=false;return;}
-    const n=document.querySelectorAll('.gc input:checked').length;
-    const ctr=document.getElementById('gcounter');
-    ctr.textContent=`${n} / 2 geste${n>1?'s':''} sélectionné${n>1?'s':''}`;
-    ctr.className='gcounter'+(n===2?' ok':'');
+// Gestes max 2
+document.querySelectorAll('.gc input').forEach(cb => {
+  cb.addEventListener('change', () => {
+    const checked = document.querySelectorAll('.gc input:checked');
+    if(checked.length > 2){ cb.checked=false; return; }
+    const n = document.querySelectorAll('.gc input:checked').length;
+    const ctr = document.getElementById('gcounter');
+    ctr.textContent = `${n} / 2 geste${n>1?'s':''} sélectionné${n>1?'s':''}`;
+    ctr.className = 'gcounter'+(n===2?' ok':'');
     err('gestes','');
   });
 });
 
-function addFiles(list){
-  for(const f of list){
-    if(f.size>10*1024*1024){alert(`${f.name} dépasse 10 Mo`);continue;}
+// Upload
+function addFiles(list) {
+  for(const f of list) {
+    if(f.size > 10*1024*1024){ alert(`${f.name} dépasse 10 Mo`); continue; }
     if(!files.find(x=>x.name===f.name&&x.size===f.size)) files.push(f);
   }
   renderFiles();
+  document.getElementById('fi').value='';
 }
-function renderFiles(){
-  const fl=document.getElementById('flist'); fl.innerHTML='';
-  files.forEach((f,i)=>{
-    const d=document.createElement('div'); d.className='fitem';
-    d.innerHTML=`<span>📄 ${f.name} <small>(${(f.size/1024).toFixed(0)} Ko)</small></span><button type="button" class="frem" onclick="removeFile(${i})">✕</button>`;
+
+function renderFiles() {
+  const fl = document.getElementById('flist');
+  const dz = document.getElementById('dz');
+  const uc = document.getElementById('upload-count');
+  fl.innerHTML = '';
+  files.forEach((f,i) => {
+    const d = document.createElement('div'); d.className='fitem';
+    const ext = f.name.split('.').pop().toUpperCase();
+    d.innerHTML = `<div class="fitem-info">
+      <span class="fitem-icon">${ext==='PDF'?'📄':ext==='PNG'||ext==='JPG'||ext==='JPEG'?'🖼️':'📎'}</span>
+      <div><div class="fitem-name">${f.name}</div><div class="fitem-size">${(f.size/1024).toFixed(0)} Ko</div></div>
+    </div>
+    <button type="button" class="frem" onclick="removeFile(${i})">✕</button>`;
     fl.appendChild(d);
   });
+  if(files.length > 0) {
+    dz.classList.add('has-files');
+    uc.textContent = `✓ ${files.length} fichier${files.length>1?'s':''} sélectionné${files.length>1?'s':''}`;
+    uc.classList.add('visible');
+  } else {
+    dz.classList.remove('has-files');
+    uc.classList.remove('visible');
+  }
 }
-function removeFile(i){files.splice(i,1);renderFiles();}
 
-const dz=document.getElementById('dz');
-dz.addEventListener('dragover',e=>{e.preventDefault();dz.classList.add('over');});
-dz.addEventListener('dragleave',()=>dz.classList.remove('over'));
-dz.addEventListener('drop',e=>{e.preventDefault();dz.classList.remove('over');addFiles(e.dataTransfer.files);});
+function removeFile(i){ files.splice(i,1); renderFiles(); }
+
+const dz = document.getElementById('dz');
+dz.addEventListener('dragover', e=>{ e.preventDefault(); dz.classList.add('over'); });
+dz.addEventListener('dragleave', ()=>dz.classList.remove('over'));
+dz.addEventListener('drop', e=>{ e.preventDefault(); dz.classList.remove('over'); addFiles(e.dataTransfer.files); });
 
 function err(id,msg){
   const el=document.getElementById('e-'+id); if(el) el.textContent=msg;
@@ -327,35 +385,42 @@ function chk(id,test,msg){
 }
 function validate(){
   let ok=true;
-  if(!chk('nom',    v=>v.length>=2,'Nom requis'))                           ok=false;
-  if(!chk('prenom', v=>v.length>=2,'Prénom requis'))                        ok=false;
-  if(!statut){err('statut','Choisissez un statut');ok=false;}
-  if(!chk('tel',    v=>/^[\d\s\+\-\.]{8,}$/.test(v),'Téléphone invalide')) ok=false;
+  if(!chk('nom',    v=>v.length>=2,'Nom requis'))                            ok=false;
+  if(!chk('prenom', v=>v.length>=2,'Prénom requis'))                         ok=false;
+  if(!chk('prenom_deposant', v=>v.length>=2,'Prénom du déposant requis'))     ok=false;
+  if(!statut){ err('statut','Choisissez un statut'); ok=false; }
+  if(!chk('tel',    v=>/^[\d\s\+\-\.]{8,}$/.test(v),'Téléphone invalide'))  ok=false;
   if(!chk('email',  v=>/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v),'Email invalide')) ok=false;
-  if(!chk('adresse',v=>v.length>=5,'Adresse requise'))                      ok=false;
-  if(!chk('type_logement',v=>v!=='','Sélectionnez un type de logement'))    ok=false;
-  if(!chk('surface',v=>parseInt(v)>0,'Surface invalide'))                   ok=false;
-  if(!chk('chauffage',v=>v!=='','Sélectionnez un chauffage'))               ok=false;
-  if(document.querySelectorAll('.gc input:checked').length<2){err('gestes','Sélectionnez 2 gestes');ok=false;}
-  if(!chk('code_apporteur',v=>v!=='','Sélectionnez un apporteur'))          ok=false;
+  if(!chk('adresse',v=>v.length>=5,'Adresse requise'))                       ok=false;
+  if(!chk('type_logement',v=>v!=='','Sélectionnez un type'))                 ok=false;
+  if(!chk('surface',v=>parseInt(v)>0,'Surface invalide'))                    ok=false;
+  if(!chk('chauffage',v=>v!=='','Sélectionnez un chauffage'))                ok=false;
+  if(document.querySelectorAll('.gc input:checked').length<2){ err('gestes','Sélectionnez 2 gestes'); ok=false; }
+  if(!chk('code_apporteur',v=>v!=='','Sélectionnez un code apporteur'))      ok=false;
   return ok;
 }
 
-document.getElementById('f').addEventListener('submit',async e=>{
+document.getElementById('f').addEventListener('submit', async e=>{
   e.preventDefault();
   document.getElementById('msgOk').className='msg';
   document.getElementById('msgKo').className='msg';
-  if(!validate()) return;
+  if(!validate()) {
+    const firstErr = document.querySelector('.ferr:not(:empty)');
+    if(firstErr) firstErr.scrollIntoView({behavior:'smooth',block:'center'});
+    return;
+  }
   const btn=document.getElementById('btn'); btn.disabled=true;
   document.getElementById('btnTxt').textContent='Envoi en cours…';
-  try{
+
+  try {
+    // 1. Upload PJ
     const pj_urls=[];
     if(files.length>0){
       document.getElementById('pwrap').style.display='block';
       for(let i=0;i<files.length;i++){
         const f=files[i];
         document.getElementById('plabel').textContent=`Upload ${i+1}/${files.length} : ${f.name}`;
-        document.getElementById('pfill').style.width=`${Math.round((i/files.length)*100)}%`;
+        document.getElementById('pfill').style.width=`${Math.round(((i)/files.length)*100)}%`;
         const ext=f.name.split('.').pop();
         const path=`dossiers/${Date.now()}_${Math.random().toString(36).slice(2)}.${ext}`;
         const {error:upErr}=await sb.storage.from('storage').upload(path,f,{cacheControl:'3600',upsert:false});
@@ -363,12 +428,16 @@ document.getElementById('f').addEventListener('submit',async e=>{
         pj_urls.push(path);
       }
       document.getElementById('pfill').style.width='100%';
-      document.getElementById('plabel').textContent='Fichiers uploadés ✓';
+      document.getElementById('plabel').textContent=`${files.length} fichier${files.length>1?'s':''} uploadé${files.length>1?'s':''} ✓`;
     }
+
     const g=[...document.querySelectorAll('.gc input:checked')].map(c=>c.value);
-    const {error:insErr}=await sb.from('formulaire_174').insert({
+
+    // 2. Insert dossier
+    const {data:dossier, error:insErr}=await sb.from('formulaire_174').insert({
       nom:document.getElementById('nom').value.trim(),
       prenom:document.getElementById('prenom').value.trim(),
+      prenom_deposant:document.getElementById('prenom_deposant').value.trim(),
       statut,
       tel:document.getElementById('tel').value.trim(),
       email:document.getElementById('email').value.trim(),
@@ -376,23 +445,38 @@ document.getElementById('f').addEventListener('submit',async e=>{
       type_logement:document.getElementById('type_logement').value,
       surface_m2:parseInt(document.getElementById('surface').value),
       type_chauffage:document.getElementById('chauffage').value,
-      geste_1:g[0]||null,geste_2:g[1]||null,
-      pj_urls,
-      code_apporteur:document.getElementById('code_apporteur').value
-    });
+      geste_1:g[0]||null, geste_2:g[1]||null,
+      code_apporteur:document.getElementById('code_apporteur').value,
+      pj_urls
+    }).select().single();
     if(insErr) throw new Error(insErr.message);
-    document.getElementById('f').reset(); files=[]; renderFiles(); statut=null;
+
+    // 3. Insert PJ nommées dans dossier_pj
+    if(dossier && pj_urls.length>0){
+      await sb.from('dossier_pj').insert(
+        pj_urls.map((path,i)=>({
+          dossier_id: dossier.id,
+          nom: files[i].name,
+          path,
+          taille: files[i].size
+        }))
+      );
+    }
+
+    // Reset
+    document.getElementById('f').reset();
+    files=[]; renderFiles(); statut=null;
     document.querySelectorAll('.rl').forEach(l=>l.classList.remove('on'));
     document.getElementById('gcounter').textContent='0 / 2 gestes sélectionnés';
     document.getElementById('gcounter').className='gcounter';
-    document.getElementById('apporteur-preview').classList.remove('visible');
     document.getElementById('pwrap').style.display='none';
     document.getElementById('msgOk').className='msg ok';
     window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
-  }catch(ex){
+
+  } catch(ex) {
     document.getElementById('msgKoTxt').textContent=ex.message||'Erreur inattendue.';
     document.getElementById('msgKo').className='msg ko';
-  }finally{
+  } finally {
     btn.disabled=false;
     document.getElementById('btnTxt').textContent='Envoyer mon dossier →';
   }
